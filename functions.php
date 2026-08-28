@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WOE_THEME_VERSION', '1.3.2' );
+define( 'WOE_THEME_VERSION', '1.3.3' );
 
 require_once get_template_directory() . '/inc/content-editor.php';
 
