@@ -1,5 +1,5 @@
 EFOIL SAFARIS WORDPRESS THEME
-Version 1.3.4
+Version 1.3.5
 
 Dieses Theme ist fuer eine normale WordPress-Installation bei Strato vorbereitet.
 

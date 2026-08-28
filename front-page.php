@@ -27,6 +27,10 @@ get_header();
 		</div>
 	</section>
 
+	<section class="update-test-circle-section" aria-label="Website update test">
+		<div class="update-test-circle" aria-hidden="true"></div>
+	</section>
+
 	<section class="fact-strip" aria-label="Quick facts">
 		<div><strong>Wingfoil first</strong><span>Flat water and open-sea sessions</span></div>
 		<div><strong>Kite when it blows</strong><span>Remote lagoons and sunset rides</span></div>
