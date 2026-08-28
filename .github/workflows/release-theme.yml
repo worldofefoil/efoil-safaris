@@ -1,0 +1,41 @@
+name: Release WordPress theme
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - style.css
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out theme
+        uses: actions/checkout@v4
+
+      - name: Read theme version
+        id: version
+        shell: bash
+        run: |
+          version=$(sed -n 's/^Version:[[:space:]]*//p' style.css | head -n 1 | tr -d '\r')
+          test -n "$version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Publish version
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        shell: bash
+        run: |
+          tag="v${VERSION}"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            exit 0
+          fi
+          gh release create "$tag" \
+            --target "$GITHUB_SHA" \
+            --title "Efoil Safaris ${VERSION}" \
+            --notes "WordPress theme release ${VERSION}."

@@ -9,9 +9,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WOE_THEME_VERSION', '1.3.3' );
+define( 'WOE_THEME_VERSION', '1.3.4' );
 
 require_once get_template_directory() . '/inc/content-editor.php';
+
+/**
+ * Apply one-time content changes that must also affect existing installations.
+ */
+function woe_apply_content_migrations() {
+	$installed_version = (string) get_option( 'woe_theme_data_version', '0.0.0' );
+
+	if ( version_compare( $installed_version, '1.3.4', '<' ) ) {
+		$content                 = get_option( 'woe_content', array() );
+		$content['general_logo'] = 0;
+		update_option( 'woe_content', $content, false );
+	}
+
+	if ( WOE_THEME_VERSION !== $installed_version ) {
+		update_option( 'woe_theme_data_version', WOE_THEME_VERSION, false );
+	}
+}
+add_action( 'after_setup_theme', 'woe_apply_content_migrations', 20 );
 
 function woe_theme_setup() {
 	add_theme_support( 'title-tag' );
