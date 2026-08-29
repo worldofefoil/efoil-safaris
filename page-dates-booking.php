@@ -29,6 +29,10 @@ get_header();
 				<h2>Pick the yacht and week.</h2>
 				<p>Prices are starting prices per person for the seven-night yacht package. Sport lessons, rental and compulsory local fees are handled separately.</p>
 			</div>
+			<div class="equipment-signature equipment-signature-wide">
+				<span>Premium equipment partner</span>
+				<strong>Duotone wingfoil & kite options can be matched to your experience and selected week.</strong>
+			</div>
 			<div class="date-grid">
 				<article class="trip-panel">
 					<img src="<?php echo esc_url( woe_content_media_url( 'dates_maj_image' ) ); ?>" alt="M/Y Majestic safari yacht" loading="lazy">
@@ -132,3 +136,4 @@ get_header();
 	</section>
 </main>
 <?php get_footer(); ?>
+
