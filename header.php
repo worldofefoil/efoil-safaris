@@ -18,7 +18,12 @@
 <header class="site-header" data-site-header>
 	<div class="site-header-inner">
 		<a class="site-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Yacht Safaris home">
-			<?php $header_logo = woe_content_media_url( 'general_logo' ); ?>
+			<?php
+			$header_logo = woe_content_media_url( 'general_logo' );
+			if ( ! $header_logo ) {
+				$header_logo = woe_asset_url( 'images/yacht-safaris-logo-transparent.png' );
+			}
+			?>
 			<?php if ( $header_logo ) : ?>
 				<img class="site-brand-logo" src="<?php echo esc_url( $header_logo ); ?>" alt="<?php echo esc_attr( woe_content_value( 'general_brand' ) ); ?>">
 			<?php else : ?>

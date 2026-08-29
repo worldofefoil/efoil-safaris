@@ -110,7 +110,7 @@ get_header();
 			<h2><?php echo esc_html( woe_content_value( 'sports_efoil_title' ) ); ?></h2>
 			<p><?php echo esc_html( woe_content_value( 'sports_efoil_text' ) ); ?></p>
 			<p>Equipment and coaching are arranged separately from the yacht package.</p>
-			<div class="battery-inline"><strong><?php echo esc_html( woe_content_value( 'activities_battery_title' ) ); ?></strong><span><?php echo esc_html( woe_content_value( 'activities_battery_text' ) ); ?></span></div>
+			<?php get_template_part( 'template-parts/efoil-battery-note' ); ?>
 		</div>
 	</section>
 

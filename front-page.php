@@ -112,7 +112,7 @@ get_header();
 			<p class="eyebrow">The silent bonus</p>
 			<h2><?php echo esc_html( woe_content_value( 'home_efoil_title' ) ); ?></h2>
 			<p><?php echo esc_html( woe_content_value( 'home_efoil_text' ) ); ?></p>
-			<div class="battery-inline"><strong><?php echo esc_html( woe_content_value( 'activities_battery_title' ) ); ?></strong><span><?php echo esc_html( woe_content_value( 'activities_battery_text' ) ); ?></span></div>
+			<?php get_template_part( 'template-parts/efoil-battery-note' ); ?>
 			<a class="text-link" href="<?php echo esc_url( woe_page_url( 'wingfoil-kite' ) . '#efoil' ); ?>">See the eFoil options</a>
 		</div>
 	</section>
@@ -129,9 +129,41 @@ get_header();
 			<article><span>01 | Arrive</span><h3>Meet in Hurghada</h3><p>Airport pickup, marina transfer, cabin check-in and dinner on board.</p></article>
 			<article><span>02 | Set up</span><h3>Know the crew</h3><p>Safety briefing, equipment check and clear groups by experience.</p></article>
 			<article><span>03 | Ride</span><h3>Follow the wind</h3><p>Wingfoil, kite, learn, explore or simply take a slow day on deck.</p></article>
-			<article><span>04 | Reset</span><h3>Eat and recover</h3><p>Fresh buffet meals, sunset sessions, snorkeling and yacht life.</p></article>
+			<article><span>04 | Come home</span><h3>Return to the yacht</h3><p>Fresh food, familiar faces and long evenings with the phone left in the cabin.</p></article>
 		</div>
 		<p><a class="text-link" href="<?php echo esc_url( woe_page_url( 'the-safari' ) ); ?>">See the full safari</a></p>
+	</section>
+
+	<section class="belonging-story" aria-label="Life together on board">
+		<img src="<?php echo esc_url( woe_content_media_url( 'home_belonging_image' ) ); ?>" alt="Guests sharing an evening together on the yacht" loading="lazy">
+		<div class="belonging-story-copy">
+			<p class="eyebrow"><?php echo esc_html( woe_content_value( 'home_belonging_eyebrow' ) ); ?></p>
+			<h2><?php echo esc_html( woe_content_value( 'home_belonging_title' ) ); ?></h2>
+			<p><?php echo esc_html( woe_content_value( 'home_belonging_p1' ) ); ?></p>
+			<p><?php echo esc_html( woe_content_value( 'home_belonging_p2' ) ); ?></p>
+			<p class="belonging-quote"><?php echo esc_html( woe_content_value( 'home_belonging_quote' ) ); ?></p>
+		</div>
+	</section>
+
+	<section class="theme-trips" aria-label="Theme trip concepts in development">
+		<div class="theme-trips-inner">
+			<div class="section-head">
+				<p class="eyebrow">In preparation | Follow for more</p>
+				<h2><?php echo esc_html( woe_content_value( 'home_theme_title' ) ); ?></h2>
+				<p><?php echo esc_html( woe_content_value( 'home_theme_text' ) ); ?></p>
+			</div>
+			<div class="theme-trip-list">
+				<?php for ( $theme = 1; $theme <= 4; $theme++ ) : ?>
+					<article>
+						<span><?php echo esc_html( str_pad( (string) $theme, 2, '0', STR_PAD_LEFT ) ); ?></span>
+						<h3><?php echo esc_html( woe_content_value( 'home_theme_' . $theme . '_title' ) ); ?></h3>
+						<p><?php echo esc_html( woe_content_value( 'home_theme_' . $theme . '_text' ) ); ?></p>
+						<small>Concept in development</small>
+					</article>
+				<?php endfor; ?>
+			</div>
+			<a class="text-link" href="<?php echo esc_url( woe_whatsapp_url( 'Hi World of eFoil, I would like to hear more about your future theme trips.' ) ); ?>" target="_blank" rel="noopener">Tell us which concept interests you</a>
+		</div>
 	</section>
 
 	<section class="why-section">

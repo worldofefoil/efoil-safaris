@@ -21,7 +21,7 @@ function woe_content_schema() {
 						array( 'id' => 'general_logo', 'label' => 'Logo in der Kopfzeile', 'type' => 'image', 'default' => 'images/yacht-safaris-logo-transparent.png', 'help' => 'Hier kannst du das Yacht-Safaris-Logo jederzeit durch ein anderes Logo ersetzen.' ),
 						array( 'id' => 'general_brand', 'label' => 'Markenname', 'type' => 'text', 'default' => 'WORLD OF EFOIL' ),
 						array( 'id' => 'general_subtitle', 'label' => 'Unterzeile', 'type' => 'text', 'default' => 'YACHT SAFARIS EGYPT' ),
-						array( 'id' => 'general_footer_tagline', 'label' => 'Text in der Fusszeile', 'type' => 'textarea', 'default' => "Wind, water and a moving basecamp on Egypt's Red Sea." ),
+						array( 'id' => 'general_footer_tagline', 'label' => 'Text in der Fusszeile', 'type' => 'textarea', 'default' => 'Come for the water. Return for the people and the yacht that feels like home.' ),
 					)
 				),
 				array(
@@ -92,6 +92,32 @@ function woe_content_schema() {
 					)
 				),
 				array(
+					'title'  => 'Gemeinschaft an Bord',
+					'fields' => array(
+						array( 'id' => 'home_belonging_image', 'label' => 'Bild', 'type' => 'image', 'default' => 'images/impression-social.webp' ),
+						array( 'id' => 'home_belonging_eyebrow', 'label' => 'Kleine Ueberschrift', 'type' => 'text', 'default' => 'More than a week away' ),
+						array( 'id' => 'home_belonging_title', 'label' => 'Ueberschrift', 'type' => 'textarea', 'default' => 'A second home, somewhere offshore.' ),
+						array( 'id' => 'home_belonging_p1', 'label' => 'Absatz 1', 'type' => 'textarea', 'default' => 'After every session, the yacht is the place you come back to: familiar faces, bare feet, shared meals and a cabin that quickly feels like your own.' ),
+						array( 'id' => 'home_belonging_p2', 'label' => 'Absatz 2', 'type' => 'textarea', 'default' => 'Put the phone down for a while. Breakfast becomes a real conversation, sunset lasts longer and strangers become the people you hope to meet again next year.' ),
+						array( 'id' => 'home_belonging_quote', 'label' => 'Hervorgehobener Satz', 'type' => 'textarea', 'default' => 'Guests arrive for the water. Many return for the people.' ),
+					)
+				),
+				array(
+					'title'  => 'Geplante Themenfahrten',
+					'fields' => array(
+						array( 'id' => 'home_theme_title', 'label' => 'Ueberschrift', 'type' => 'textarea', 'default' => 'Same water. A different kind of crew.' ),
+						array( 'id' => 'home_theme_text', 'label' => 'Einleitung', 'type' => 'textarea', 'default' => 'Wingfoil, kite and eFoil remain at the centre. These future departures add a shared idea to the week and are being developed now, rather than offered as fixed packages.' ),
+						array( 'id' => 'home_theme_1_title', 'label' => 'Thema 1 Titel', 'type' => 'text', 'default' => 'Family Water Weeks' ),
+						array( 'id' => 'home_theme_1_text', 'label' => 'Thema 1 Text', 'type' => 'textarea', 'default' => 'A family-oriented safari with shared water sessions, age-aware coaching and time together on board.' ),
+						array( 'id' => 'home_theme_2_title', 'label' => 'Thema 2 Titel', 'type' => 'text', 'default' => 'Ride & Reset Retreats' ),
+						array( 'id' => 'home_theme_2_text', 'label' => 'Thema 2 Text', 'type' => 'textarea', 'default' => 'Full watersports days with more room for mobility, recovery, quiet mornings and unhurried evenings.' ),
+						array( 'id' => 'home_theme_3_title', 'label' => 'Thema 3 Titel', 'type' => 'text', 'default' => 'Silver Riders 45+' ),
+						array( 'id' => 'home_theme_3_text', 'label' => 'Thema 3 Text', 'type' => 'textarea', 'default' => 'A relaxed watersports week for guests who value an experienced peer group, good coaching and a comfortable pace.' ),
+						array( 'id' => 'home_theme_4_title', 'label' => 'Thema 4 Titel', 'type' => 'text', 'default' => 'First Flight Weeks' ),
+						array( 'id' => 'home_theme_4_text', 'label' => 'Thema 4 Text', 'type' => 'textarea', 'default' => 'A beginner-only departure where everyone starts together, learns without pressure and celebrates the same milestones.' ),
+					)
+				),
+				array(
 					'title'  => 'Warum mit uns buchen',
 					'fields' => array(
 						array( 'id' => 'home_why_title', 'label' => 'Ueberschrift', 'type' => 'textarea', 'default' => 'Built around the week you actually want.' ),
@@ -142,7 +168,7 @@ function woe_content_schema() {
 						array( 'id' => 'safari_intro_image', 'label' => 'Bild', 'type' => 'image', 'default' => 'images/yacht-bay.webp' ),
 						array( 'id' => 'safari_intro_title', 'label' => 'Ueberschrift', 'type' => 'textarea', 'default' => 'The spot changes. Your basecamp comes with you.' ),
 						array( 'id' => 'safari_intro_p1', 'label' => 'Absatz 1', 'type' => 'textarea', 'default' => 'On a normal watersports holiday, you return to the same beach every day. Here, the captain, guides and instructors read the forecast and choose the route around the group.' ),
-						array( 'id' => 'safari_intro_p2', 'label' => 'Absatz 2', 'type' => 'textarea', 'default' => 'The result is more water time, less transport and the chance to ride places that are difficult to reach from shore.' ),
+						array( 'id' => 'safari_intro_p2', 'label' => 'Absatz 2', 'type' => 'textarea', 'default' => 'The result is more water time, less transport and a familiar yacht to come home to after every session.' ),
 						array( 'id' => 'safari_full_image', 'label' => 'Breites Bild unter der Einleitung', 'type' => 'image', 'default' => 'images/impression-ride.webp' ),
 					)
 				),

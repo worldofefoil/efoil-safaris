@@ -8,7 +8,8 @@
 <footer class="site-footer">
 	<div class="footer-main">
 		<div class="footer-brand">
-			<img src="<?php echo esc_url( woe_content_media_url( 'general_logo' ) ); ?>" alt="<?php echo esc_attr( woe_content_value( 'general_brand' ) ); ?>">
+			<?php $footer_logo = woe_content_media_url( 'general_logo' ) ?: woe_asset_url( 'images/yacht-safaris-logo-transparent.png' ); ?>
+			<img src="<?php echo esc_url( $footer_logo ); ?>" alt="<?php echo esc_attr( woe_content_value( 'general_brand' ) ); ?>">
 			<p><?php echo esc_html( woe_content_value( 'general_footer_tagline' ) ); ?></p>
 		</div>
 		<div>

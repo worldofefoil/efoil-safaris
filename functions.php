@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WOE_THEME_VERSION', '1.3.6' );
+define( 'WOE_THEME_VERSION', '1.3.7' );
 
 require_once get_template_directory() . '/inc/content-editor.php';
 
@@ -36,6 +36,23 @@ function woe_apply_content_migrations() {
 		}
 		$content['home_yacht_title'] = 'M/Y Black Panther: our new premium basecamp.';
 		$content['home_yacht_text']  = 'Launching for our 2027 safaris, Black Panther brings five decks, 15 rooms, generous lounges, a spa and jacuzzi to the Red Sea. It is more than transport: it is the place where every riding day begins and ends.';
+
+		update_option( 'woe_content', $content, false );
+	}
+
+	if ( version_compare( $installed_version, '1.3.7', '<' ) ) {
+		$content = get_option( 'woe_content', array() );
+		if ( ! is_array( $content ) ) {
+			$content = array();
+		}
+
+		if ( empty( $content['general_footer_tagline'] ) || "Wind, water and a moving basecamp on Egypt's Red Sea." === $content['general_footer_tagline'] ) {
+			$content['general_footer_tagline'] = 'Come for the water. Return for the people and the yacht that feels like home.';
+		}
+
+		if ( empty( $content['safari_intro_p2'] ) || 'The result is more water time, less transport and the chance to ride places that are difficult to reach from shore.' === $content['safari_intro_p2'] ) {
+			$content['safari_intro_p2'] = 'The result is more water time, less transport and a familiar yacht to come home to after every session.';
+		}
 
 		update_option( 'woe_content', $content, false );
 	}
