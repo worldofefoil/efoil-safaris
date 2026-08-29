@@ -5,7 +5,7 @@ GitHub Theme URI: https://github.com/worldofefoil/efoil-safaris
 Primary Branch: main
 Author: World of eFoil GmbH
 Description: Mobile-first WordPress theme for Wingfoil, Kitesurf and eFoil yacht safaris in Egypt.
-Version: 1.3.7
+Version: 1.3.8
 Requires at least: 6.2
 Requires PHP: 7.4
 Text Domain: efoil-safaris
@@ -1797,6 +1797,70 @@ a.partner-item:hover {
   text-transform: uppercase;
 }
 
+.theme-interest-cta {
+  display: grid;
+  gap: 26px;
+  margin-top: 36px;
+  padding: 28px 22px;
+  color: var(--white);
+  background: var(--ink);
+  border-top: 6px solid var(--signal);
+}
+
+.theme-interest-cta .eyebrow {
+  color: var(--signal);
+}
+
+.theme-interest-cta h3 {
+  max-width: 15ch;
+  margin-bottom: 12px;
+  font-size: 36px;
+}
+
+.theme-interest-copy > p:not(.eyebrow) {
+  max-width: 700px;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.theme-interest-prompts {
+  display: grid;
+  gap: 0;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style-position: inside;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.theme-interest-prompts li {
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.theme-interest-prompts li::marker {
+  color: var(--signal);
+}
+
+.theme-interest-action {
+  display: grid;
+  gap: 12px;
+  align-content: center;
+}
+
+.theme-interest-action .button {
+  width: 100%;
+  text-align: center;
+}
+
+.theme-interest-action small {
+  max-width: 320px;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
 .booking-layout,
 .contact-layout {
   display: grid;
@@ -2432,6 +2496,26 @@ a.partner-item:hover {
 
   .theme-trip-list small {
     grid-column: 4;
+  }
+
+  .theme-interest-cta {
+    grid-template-columns: minmax(0, 1fr) minmax(250px, 0.36fr);
+    align-items: center;
+    gap: 48px;
+    padding: 42px;
+  }
+
+  .theme-interest-prompts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .theme-interest-prompts li {
+    padding-right: 18px;
+  }
+
+  .theme-interest-prompts li + li {
+    padding-left: 18px;
+    border-left: 1px solid rgba(255, 255, 255, 0.18);
   }
 
   .cta-band-inner {

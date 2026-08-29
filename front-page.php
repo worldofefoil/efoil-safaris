@@ -162,7 +162,22 @@ get_header();
 					</article>
 				<?php endfor; ?>
 			</div>
-			<a class="text-link" href="<?php echo esc_url( woe_whatsapp_url( 'Hi World of eFoil, I would like to hear more about your future theme trips.' ) ); ?>" target="_blank" rel="noopener">Tell us which concept interests you</a>
+			<div class="theme-interest-cta">
+				<div class="theme-interest-copy">
+					<p class="eyebrow">Early interest list | No commitment</p>
+					<h3><?php echo esc_html( woe_content_value( 'home_theme_cta_title' ) ); ?></h3>
+					<p><?php echo esc_html( woe_content_value( 'home_theme_cta_text' ) ); ?></p>
+					<ol class="theme-interest-prompts">
+						<li>Which trip interests you?</li>
+						<li>Who would you travel with?</li>
+						<li>What matters most to you?</li>
+					</ol>
+				</div>
+				<div class="theme-interest-action">
+					<a class="button button-primary" href="<?php echo esc_url( woe_whatsapp_url( "Hi World of eFoil, I would like to join the early interest list for your future theme trips.\n\nThe trip that interests me:\nWho I would travel with:\nWhat matters most to me:" ) ); ?>" target="_blank" rel="noopener">Pre-register your interest</a>
+					<small>No booking and no payment. We contact you first when details are ready.</small>
+				</div>
+			</div>
 		</div>
 	</section>
 

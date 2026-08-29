@@ -115,6 +115,8 @@ function woe_content_schema() {
 						array( 'id' => 'home_theme_3_text', 'label' => 'Thema 3 Text', 'type' => 'textarea', 'default' => 'A relaxed watersports week for guests who value an experienced peer group, good coaching and a comfortable pace.' ),
 						array( 'id' => 'home_theme_4_title', 'label' => 'Thema 4 Titel', 'type' => 'text', 'default' => 'First Flight Weeks' ),
 						array( 'id' => 'home_theme_4_text', 'label' => 'Thema 4 Text', 'type' => 'textarea', 'default' => 'A beginner-only departure where everyone starts together, learns without pressure and celebrates the same milestones.' ),
+						array( 'id' => 'home_theme_cta_title', 'label' => 'CTA Ueberschrift', 'type' => 'textarea', 'default' => 'Hear about themed departures before they go public.' ),
+						array( 'id' => 'home_theme_cta_text', 'label' => 'CTA Text', 'type' => 'textarea', 'default' => 'Tell us what interests you and what would make the week right for you. Your answers help us shape dates, coaching and the experience on board.' ),
 					)
 				),
 				array(
