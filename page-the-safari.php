@@ -31,6 +31,10 @@ get_header();
 					<div><strong>Daily</strong><span>Fresh chef-prepared meals</span></div>
 					<div><strong>Flexible</strong><span>Route based on conditions</span></div>
 				</div>
+				<div class="equipment-signature">
+					<span>Premium equipment standard</span>
+					<strong>Duotone wingfoil & kite setups are arranged to match level and week.</strong>
+				</div>
 			</div>
 			<img src="<?php echo esc_url( woe_content_media_url( 'safari_intro_image' ) ); ?>" alt="Yacht anchored near a Red Sea island" loading="lazy">
 		</div>
@@ -91,3 +95,4 @@ get_header();
 	</section>
 </main>
 <?php get_footer(); ?>
+
