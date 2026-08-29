@@ -46,7 +46,7 @@ get_header();
 				<?php endfor; ?>
 			</div>
 			<div class="youtube-gallery-actions">
-				<a class="button button-primary" href="<?php echo esc_url( woe_youtube_url() ); ?>" target="_blank" rel="noopener">Open our YouTube channel</a>
+				<a class="button button-water" href="<?php echo esc_url( woe_youtube_url() ); ?>" target="_blank" rel="noopener">Open our YouTube channel</a>
 				<a class="button button-outline" href="<?php echo esc_url( woe_instagram_url() ); ?>" target="_blank" rel="noopener">Follow us on Instagram</a>
 			</div>
 		</div>
@@ -85,3 +85,4 @@ get_header();
 	</section>
 </main>
 <?php get_footer(); ?>
+
