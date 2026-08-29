@@ -27,10 +27,6 @@ get_header();
 		</div>
 	</section>
 
-	<section class="update-test-circle-section" aria-label="Website update test">
-		<div class="update-test-circle" aria-hidden="true"></div>
-	</section>
-
 	<section class="fact-strip" aria-label="Quick facts">
 		<div><strong>Wingfoil first</strong><span>Flat water and open-sea sessions</span></div>
 		<div><strong>Kite when it blows</strong><span>Remote lagoons and sunset rides</span></div>
@@ -46,6 +42,25 @@ get_header();
 				<h2><?php echo esc_html( woe_content_value( 'home_duotone_title' ) ); ?></h2>
 				<p><?php echo esc_html( woe_content_value( 'home_duotone_text' ) ); ?></p>
 				<span><?php echo esc_html( woe_content_value( 'home_duotone_note' ) ); ?></span>
+			</div>
+		</div>
+	</section>
+
+	<section class="black-panther-feature" aria-label="M/Y Black Panther yacht highlight">
+		<div class="black-panther-feature-inner">
+			<div class="black-panther-gallery">
+				<img class="black-panther-gallery-main" src="<?php echo esc_url( woe_content_media_url( 'home_yacht_image' ) ); ?>" alt="M/Y Black Panther on the Red Sea" loading="lazy">
+				<img src="<?php echo esc_url( woe_content_media_url( 'home_yacht_image2' ) ); ?>" alt="Jacuzzi deck on M/Y Black Panther" loading="lazy">
+				<img src="<?php echo esc_url( woe_content_media_url( 'home_yacht_image3' ) ); ?>" alt="Open lounge on M/Y Black Panther" loading="lazy">
+			</div>
+			<div class="black-panther-copy">
+				<p class="eyebrow">New for 2027 | Your moving basecamp</p>
+				<h2><?php echo esc_html( woe_content_value( 'home_yacht_title' ) ); ?></h2>
+				<p><?php echo esc_html( woe_content_value( 'home_yacht_text' ) ); ?></p>
+				<ul class="spec-line">
+					<li>5 decks</li><li>15 rooms</li><li>Chef on board</li><li>Spa & jacuzzi</li><li>2 rescue tenders</li>
+				</ul>
+				<a class="button button-primary" href="<?php echo esc_url( woe_page_url( 'yachts-cabins' ) ); ?>">Explore Black Panther</a>
 			</div>
 		</div>
 	</section>
@@ -127,19 +142,6 @@ get_header();
 					<article><span><?php echo esc_html( str_pad( (string) $reason, 2, '0', STR_PAD_LEFT ) ); ?></span><h3><?php echo esc_html( woe_content_value( 'home_why_' . $reason . '_title' ) ); ?></h3><p><?php echo esc_html( woe_content_value( 'home_why_' . $reason . '_text' ) ); ?></p></article>
 				<?php endfor; ?>
 			</div>
-		</div>
-	</section>
-
-	<section class="yacht-feature">
-		<img src="<?php echo esc_url( woe_content_media_url( 'home_yacht_image' ) ); ?>" alt="Premium safari yacht" loading="lazy">
-		<div class="yacht-feature-content">
-			<p class="eyebrow">Your moving basecamp</p>
-			<h2><?php echo esc_html( woe_content_value( 'home_yacht_title' ) ); ?></h2>
-			<p><?php echo esc_html( woe_content_value( 'home_yacht_text' ) ); ?></p>
-			<ul class="spec-line">
-				<li>Private cabins</li><li>Chef on board</li><li>Rescue tenders</li><li>Jacuzzi & lounges</li>
-			</ul>
-			<a class="button button-primary" href="<?php echo esc_url( woe_page_url( 'yachts-cabins' ) ); ?>">View yachts & cabins</a>
 		</div>
 	</section>
 

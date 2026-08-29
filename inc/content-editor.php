@@ -18,7 +18,7 @@ function woe_content_schema() {
 				array(
 					'title'  => 'Marke und Kopfzeile',
 					'fields' => array(
-						array( 'id' => 'general_logo', 'label' => 'Logo in der Kopfzeile', 'type' => 'image', 'default' => 'images/yacht-safaris-logo.webp', 'help' => 'Hier kannst du das Yacht-Safaris-Logo jederzeit durch ein anderes Logo ersetzen.' ),
+						array( 'id' => 'general_logo', 'label' => 'Logo in der Kopfzeile', 'type' => 'image', 'default' => 'images/yacht-safaris-logo-transparent.png', 'help' => 'Hier kannst du das Yacht-Safaris-Logo jederzeit durch ein anderes Logo ersetzen.' ),
 						array( 'id' => 'general_brand', 'label' => 'Markenname', 'type' => 'text', 'default' => 'WORLD OF EFOIL' ),
 						array( 'id' => 'general_subtitle', 'label' => 'Unterzeile', 'type' => 'text', 'default' => 'YACHT SAFARIS EGYPT' ),
 						array( 'id' => 'general_footer_tagline', 'label' => 'Text in der Fusszeile', 'type' => 'textarea', 'default' => "Wind, water and a moving basecamp on Egypt's Red Sea." ),
@@ -76,7 +76,7 @@ function woe_content_schema() {
 				array(
 					'title'  => 'Duotone-Ausstattung (Startseite und Sportseite)',
 					'fields' => array(
-						array( 'id' => 'home_duotone_logo', 'label' => 'Equipped-with-Duotone-Logo', 'type' => 'image', 'default' => 'images/equipped-with-duotone.webp' ),
+						array( 'id' => 'home_duotone_logo', 'label' => 'Equipped-with-Duotone-Logo', 'type' => 'image', 'default' => 'images/equipped-with-duotone-turquoise.webp' ),
 						array( 'id' => 'home_duotone_title', 'label' => 'Ueberschrift', 'type' => 'textarea', 'default' => 'Premium Duotone equipment, ready for the week.' ),
 						array( 'id' => 'home_duotone_text', 'label' => 'Beschreibung', 'type' => 'textarea', 'default' => 'Our wingfoil and kite setup is centred on current Duotone wings, kites, boards and foils, selected for progression, freeriding and dependable days on the water.' ),
 						array( 'id' => 'home_duotone_note', 'label' => 'Kleine Zusatzzeile', 'type' => 'textarea', 'default' => 'A broad size range lets guests compare suitable setups across real safari conditions, not just during a short beach demo.' ),
@@ -113,9 +113,11 @@ function woe_content_schema() {
 				array(
 					'title'  => 'Yacht und Abschluss',
 					'fields' => array(
-						array( 'id' => 'home_yacht_image', 'label' => 'Yacht-Bild', 'type' => 'image', 'default' => 'images/black-panther.webp' ),
-						array( 'id' => 'home_yacht_title', 'label' => 'Yacht-Ueberschrift', 'type' => 'textarea', 'default' => 'A proper yacht, not a floating dorm.' ),
-						array( 'id' => 'home_yacht_text', 'label' => 'Yacht-Text', 'type' => 'textarea', 'default' => 'Air-conditioned cabins, private bathrooms, open decks, lounges, chef-prepared meals, speedboats and experienced marine crew. For 2027, M/Y Black Panther adds a premium five-deck setup.' ),
+						array( 'id' => 'home_yacht_image', 'label' => 'Black Panther Hauptbild', 'type' => 'image', 'default' => 'images/black-panther.webp' ),
+						array( 'id' => 'home_yacht_image2', 'label' => 'Black Panther Zusatzbild 1', 'type' => 'image', 'default' => 'images/yacht-jacuzzi.webp' ),
+						array( 'id' => 'home_yacht_image3', 'label' => 'Black Panther Zusatzbild 2', 'type' => 'image', 'default' => 'images/yacht-lounge.webp' ),
+						array( 'id' => 'home_yacht_title', 'label' => 'Yacht-Ueberschrift', 'type' => 'textarea', 'default' => 'M/Y Black Panther: our new premium basecamp.' ),
+						array( 'id' => 'home_yacht_text', 'label' => 'Yacht-Text', 'type' => 'textarea', 'default' => 'Launching for our 2027 safaris, Black Panther brings five decks, 15 rooms, generous lounges, a spa and jacuzzi to the Red Sea. It is more than transport: it is the place where every riding day begins and ends.' ),
 						array( 'id' => 'home_cta_title', 'label' => 'Letzte Ueberschrift', 'type' => 'textarea', 'default' => 'Ask which week fits your level.' ),
 						array( 'id' => 'home_cta_text', 'label' => 'Letzter Text', 'type' => 'textarea', 'default' => 'Tell us whether your focus is wingfoil, kite, eFoil or simply joining the trip.' ),
 					)
@@ -284,9 +286,9 @@ function woe_content_schema() {
 						array( 'id' => 'yachts_maj_image', 'label' => 'Hauptbild', 'type' => 'image', 'default' => 'images/majestic.webp' ),
 						array( 'id' => 'yachts_maj_title', 'label' => 'Ueberschrift', 'type' => 'textarea', 'default' => 'The proven safari yacht.' ),
 						array( 'id' => 'yachts_maj_text', 'label' => 'Beschreibung', 'type' => 'textarea', 'default' => 'Built in 2023, Majestic offers 16 air-conditioned cabins, private bathrooms, two lounges, shaded decks, a sundeck, jacuzzi, chef-prepared buffet meals and an experienced crew.' ),
-						array( 'id' => 'yachts_maj_gallery1', 'label' => 'Bild 1, Salon', 'type' => 'image', 'default' => 'images/yacht-salon.webp' ),
-						array( 'id' => 'yachts_maj_gallery2', 'label' => 'Bild 2, Kabine', 'type' => 'image', 'default' => 'images/yacht-suite2.webp' ),
-						array( 'id' => 'yachts_maj_gallery3', 'label' => 'Bild 3, Bucht', 'type' => 'image', 'default' => 'images/yacht-bay.webp' ),
+						array( 'id' => 'yachts_maj_gallery1', 'label' => 'Bild 1, Salon', 'type' => 'image', 'default' => 'images/majestic-salon.webp' ),
+						array( 'id' => 'yachts_maj_gallery2', 'label' => 'Bild 2, Kabine', 'type' => 'image', 'default' => 'images/majestic-cabin.webp' ),
+						array( 'id' => 'yachts_maj_gallery3', 'label' => 'Bild 3, Aussendeck', 'type' => 'image', 'default' => 'images/majestic-deck.webp' ),
 					)
 				),
 				array(

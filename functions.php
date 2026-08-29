@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WOE_THEME_VERSION', '1.3.5' );
+define( 'WOE_THEME_VERSION', '1.3.6' );
 
 require_once get_template_directory() . '/inc/content-editor.php';
 
@@ -22,6 +22,21 @@ function woe_apply_content_migrations() {
 	if ( version_compare( $installed_version, '1.3.4', '<' ) ) {
 		$content                 = get_option( 'woe_content', array() );
 		$content['general_logo'] = 0;
+		update_option( 'woe_content', $content, false );
+	}
+
+	if ( version_compare( $installed_version, '1.3.6', '<' ) ) {
+		$content = get_option( 'woe_content', array() );
+		if ( ! is_array( $content ) ) {
+			$content = array();
+		}
+
+		foreach ( array( 'general_logo', 'home_duotone_logo', 'home_yacht_image', 'home_yacht_image2', 'home_yacht_image3', 'yachts_maj_image', 'yachts_maj_gallery1', 'yachts_maj_gallery2', 'yachts_maj_gallery3' ) as $image_field ) {
+			$content[ $image_field ] = 0;
+		}
+		$content['home_yacht_title'] = 'M/Y Black Panther: our new premium basecamp.';
+		$content['home_yacht_text']  = 'Launching for our 2027 safaris, Black Panther brings five decks, 15 rooms, generous lounges, a spa and jacuzzi to the Red Sea. It is more than transport: it is the place where every riding day begins and ends.';
+
 		update_option( 'woe_content', $content, false );
 	}
 

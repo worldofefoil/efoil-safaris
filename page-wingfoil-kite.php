@@ -63,6 +63,26 @@ get_header();
 		</div>
 	</section>
 
+	<section class="section academy-video-section" aria-label="Duotone Academy videos">
+		<div class="section-head">
+			<p class="eyebrow">Duotone Academy</p>
+			<h2>Learn before the trip. Progress on the water.</h2>
+			<p>Two useful Academy sessions for wing control and new freestyle ideas with the same premium Duotone focus you will find on board.</p>
+		</div>
+		<div class="academy-video-grid">
+			<article>
+				<div class="academy-video-frame"><iframe src="https://www.youtube.com/embed/3FnCakezwOQ?list=PLKSlkt4cEJPl-uFUF2N4Fzvgw8tQspLhJ" title="BASICS - Fly your wing on the beach - Duotone Wing Academy" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+				<h3>Wing control on the beach</h3>
+				<p>The foundation for confident handling before your first water session.</p>
+			</article>
+			<article>
+				<div class="academy-video-frame"><iframe src="https://www.youtube.com/embed/n6RIJebLb-0?list=PLKSlkt4cEJPm9YYfNByZENk-7uD7Dxb6B" title="Duotone Academy App - 11 New Freestyle Tricks" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+				<h3>Freestyle inspiration</h3>
+				<p>Eleven new ideas for experienced riders who want to add more to every session.</p>
+			</article>
+		</div>
+	</section>
+
 	<section class="section" id="kite">
 		<div class="editorial-split reverse">
 			<div class="copy">

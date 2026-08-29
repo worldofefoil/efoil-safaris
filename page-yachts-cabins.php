@@ -72,7 +72,7 @@ get_header();
 			<div class="yacht-grid">
 				<article><img src="<?php echo esc_url( woe_content_media_url( 'yachts_maj_gallery1' ) ); ?>" alt="Majestic interior salon" loading="lazy"><div class="yacht-grid-content"><h3>Salon</h3><p>Air-conditioned indoor space for meals and downtime.</p></div></article>
 				<article><img src="<?php echo esc_url( woe_content_media_url( 'yachts_maj_gallery2' ) ); ?>" alt="Majestic guest cabin" loading="lazy"><div class="yacht-grid-content"><h3>Guest cabins</h3><p>Private bathroom, air conditioning and practical storage.</p></div></article>
-				<article><img src="<?php echo esc_url( woe_content_media_url( 'yachts_maj_gallery3' ) ); ?>" alt="Yacht in a quiet Red Sea bay" loading="lazy"><div class="yacht-grid-content"><h3>Moving basecamp</h3><p>The view changes as the yacht follows the best conditions.</p></div></article>
+				<article><img src="<?php echo esc_url( woe_content_media_url( 'yachts_maj_gallery3' ) ); ?>" alt="Shaded outdoor deck on M/Y Majestic" loading="lazy"><div class="yacht-grid-content"><h3>Al fresco deck</h3><p>Shaded tables and open sea views for meals and downtime.</p></div></article>
 			</div>
 		</div>
 	</section>

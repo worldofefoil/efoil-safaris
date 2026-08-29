@@ -23,7 +23,7 @@ get_header();
 		<div class="faq-list">
 			<?php for ( $number = 1; $number <= 6; $number++ ) : ?><details><summary><?php echo esc_html( woe_content_value( 'faq_question_' . $number ) ); ?></summary><p><?php echo esc_html( woe_content_value( 'faq_answer_' . $number ) ); ?></p></details><?php endfor; ?>
 		</div>
-		<div class="battery-note faq-battery-note"><div class="battery-note-logos" aria-hidden="true"><img src="<?php echo esc_url( woe_content_media_url( 'partner_1_logo' ) ); ?>" alt=""><img src="<?php echo esc_url( woe_content_media_url( 'partner_2_logo' ) ); ?>" alt=""></div><div><strong><?php echo esc_html( woe_content_value( 'activities_battery_title' ) ); ?></strong><p><?php echo esc_html( woe_content_value( 'activities_battery_text' ) ); ?></p></div></div>
+		<div class="battery-note faq-battery-note"><div class="battery-note-logos" aria-hidden="true"><span><img src="<?php echo esc_url( woe_asset_url( 'images/partners/aerofoils-audi-compact.webp' ) ); ?>" alt=""></span><span><img src="<?php echo esc_url( woe_asset_url( 'images/partners/lift-foils-compact.webp' ) ); ?>" alt=""></span></div><div><strong><?php echo esc_html( woe_content_value( 'activities_battery_title' ) ); ?></strong><p><?php echo esc_html( woe_content_value( 'activities_battery_text' ) ); ?></p></div></div>
 	</section>
 
 	<section class="section section-paper">

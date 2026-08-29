@@ -1,5 +1,5 @@
 EFOIL SAFARIS WORDPRESS THEME
-Version 1.3.5
+Version 1.3.6
 
 Dieses Theme ist fuer eine normale WordPress-Installation bei Strato vorbereitet.
 
@@ -21,6 +21,14 @@ ein Bild aus der WordPress-Mediathek ausgetauscht werden.
 
 Wenn du die Website angemeldet ansiehst, fuehrt der Punkt Inhalte bearbeiten in der
 oberen WordPress-Leiste direkt zum passenden Bereich dieses Editors.
+
+NEU IN VERSION 1.3.6
+- transparentes Yacht-Safaris-Logo in Kopf- und Fusszeile
+- tuerkises Equipped-with-Duotone-Logo
+- neuer Black-Panther-Highlightbereich mit drei Bildern auf der Startseite
+- korrekte Salon-, Kabinen- und Deckbilder der M/Y Majestic
+- zwei Duotone-Academy-Videos auf der Wing-&-Kite-Seite
+- groessere Lift- und Aerofoils-Logos beim Batteriehinweis
 
 NEU IN VERSION 1.3.2
 - getrennte Empfaengerliste nur fuer Anfragen aus dem Buchungsformular
