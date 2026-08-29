@@ -1,5 +1,5 @@
 EFOIL SAFARIS WORDPRESS THEME
-Version 1.3.13
+Version 1.3.14
 
 Dieses Theme ist fuer eine normale WordPress-Installation bei Strato vorbereitet.
 
@@ -21,6 +21,13 @@ ein Bild aus der WordPress-Mediathek ausgetauscht werden.
 
 Wenn du die Website angemeldet ansiehst, fuehrt der Punkt Inhalte bearbeiten in der
 oberen WordPress-Leiste direkt zum passenden Bereich dieses Editors.
+
+NEU IN VERSION 1.3.14
+- Duotone-nahe Farbrollen mit Tuerkis fuer Orientierung und Gelb fuer Buchungsaktionen
+- kompakter Fotostreifen fuer die wichtigsten Wassersportaktivitaeten
+- alle 15 Aktivitaeten als ruhigere, besser scanbare Detailuebersicht
+- dezente Hinweise auf Duotone-Ausstattungsoptionen auf Safari- und Terminseite
+- luftigere Abstaende in dichten Desktopbereichen
 
 NEU IN VERSION 1.3.13
 - breiter und ausgewogener dargestellter Themenfahrten-Hinweis
@@ -116,3 +123,4 @@ SEITEN
 - FAQ & Contact
 - Privacy Policy
 - Terms & Conditions
+
