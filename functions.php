@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WOE_THEME_VERSION', '1.3.8' );
+define( 'WOE_THEME_VERSION', '1.3.9' );
 
 require_once get_template_directory() . '/inc/content-editor.php';
 
@@ -54,6 +54,15 @@ function woe_apply_content_migrations() {
 			$content['safari_intro_p2'] = 'The result is more water time, less transport and a familiar yacht to come home to after every session.';
 		}
 
+		update_option( 'woe_content', $content, false );
+	}
+
+	if ( version_compare( $installed_version, '1.3.9', '<' ) ) {
+		$content = get_option( 'woe_content', array() );
+		if ( ! is_array( $content ) ) {
+			$content = array();
+		}
+		$content['general_logo'] = 0;
 		update_option( 'woe_content', $content, false );
 	}
 
@@ -278,6 +287,29 @@ function woe_whatsapp_url( $message = '' ) {
 	$number = preg_replace( '/[^0-9]/', '', woe_content_value( 'general_whatsapp' ) );
 	$text   = $message ? $message : 'Hi World of eFoil, I am interested in the Wingfoil & Kite Yacht Safari.';
 	return 'https://wa.me/' . $number . '?text=' . rawurlencode( $text );
+}
+
+function woe_instagram_url() {
+	$url = esc_url_raw( woe_content_value( 'general_instagram_url' ) );
+	return $url ?: 'https://www.instagram.com/worldofefoil/';
+}
+
+function woe_youtube_url() {
+	$url = esc_url_raw( woe_content_value( 'general_youtube_url' ) );
+	return $url ?: 'https://www.youtube.com/@worldofefoil';
+}
+
+function woe_youtube_embed_url( $value ) {
+	$value = trim( (string) $value );
+	if ( preg_match( '/^[A-Za-z0-9_-]{11}$/', $value ) ) {
+		$video_id = $value;
+	} elseif ( preg_match( '~(?:youtu\.be/|youtube(?:-nocookie)?\.com/(?:watch\?(?:[^#]*&)?v=|embed/|shorts/))([A-Za-z0-9_-]{11})~i', $value, $matches ) ) {
+		$video_id = $matches[1];
+	} else {
+		return '';
+	}
+
+	return 'https://www.youtube-nocookie.com/embed/' . $video_id;
 }
 
 function woe_primary_menu_fallback() {

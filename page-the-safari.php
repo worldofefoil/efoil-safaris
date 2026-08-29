@@ -27,7 +27,7 @@ get_header();
 				<p><?php echo esc_html( woe_content_value( 'safari_intro_p2' ) ); ?></p>
 				<div class="feature-stat-grid">
 					<div><strong>7 nights</strong><span>Liveaboard accommodation</span></div>
-					<div><strong>2 tenders</strong><span>Transfers and rescue support</span></div>
+					<div><strong>2&nbsp;tenders</strong><span>Transfers and rescue support</span></div>
 					<div><strong>Daily</strong><span>Fresh chef-prepared meals</span></div>
 					<div><strong>Flexible</strong><span>Route based on conditions</span></div>
 				</div>

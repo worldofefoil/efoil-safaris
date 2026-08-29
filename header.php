@@ -21,7 +21,7 @@
 			<?php
 			$header_logo = woe_content_media_url( 'general_logo' );
 			if ( ! $header_logo ) {
-				$header_logo = woe_asset_url( 'images/yacht-safaris-logo-transparent.png' );
+				$header_logo = woe_asset_url( 'images/yacht-safaris-logo.webp' );
 			}
 			?>
 			<?php if ( $header_logo ) : ?>

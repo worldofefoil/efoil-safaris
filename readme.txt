@@ -1,5 +1,5 @@
 EFOIL SAFARIS WORDPRESS THEME
-Version 1.3.8
+Version 1.3.9
 
 Dieses Theme ist fuer eine normale WordPress-Installation bei Strato vorbereitet.
 
@@ -21,6 +21,13 @@ ein Bild aus der WordPress-Mediathek ausgetauscht werden.
 
 Wenn du die Website angemeldet ansiehst, fuehrt der Punkt Inhalte bearbeiten in der
 oberen WordPress-Leiste direkt zum passenden Bereich dieses Editors.
+
+NEU IN VERSION 1.3.9
+- korrigierte Ausrichtung der Wingfoil- und Kitesurfing-Bereiche auf Desktop
+- verlaesslich sichtbares Yacht-Safaris-Logo in der Kopfzeile
+- bessere Kontraste auf Seitenbildern und dunklen Inhaltsbereichen
+- fuenf laengste Videos des offiziellen WorldofEfoil-YouTube-Kanals in der Galerie
+- Instagram-, YouTube- und WhatsApp-Buttons auf allen Seiten
 
 NEU IN VERSION 1.3.8
 - hervorgehobene unverbindliche Interessentenliste fuer geplante Themenfahrten

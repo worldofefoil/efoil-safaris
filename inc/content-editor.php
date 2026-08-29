@@ -18,7 +18,7 @@ function woe_content_schema() {
 				array(
 					'title'  => 'Marke und Kopfzeile',
 					'fields' => array(
-						array( 'id' => 'general_logo', 'label' => 'Logo in der Kopfzeile', 'type' => 'image', 'default' => 'images/yacht-safaris-logo-transparent.png', 'help' => 'Hier kannst du das Yacht-Safaris-Logo jederzeit durch ein anderes Logo ersetzen.' ),
+						array( 'id' => 'general_logo', 'label' => 'Logo in der Kopfzeile', 'type' => 'image', 'default' => 'images/yacht-safaris-logo.webp', 'help' => 'Hier kannst du das Yacht-Safaris-Logo jederzeit durch ein anderes Logo ersetzen.' ),
 						array( 'id' => 'general_brand', 'label' => 'Markenname', 'type' => 'text', 'default' => 'WORLD OF EFOIL' ),
 						array( 'id' => 'general_subtitle', 'label' => 'Unterzeile', 'type' => 'text', 'default' => 'YACHT SAFARIS EGYPT' ),
 						array( 'id' => 'general_footer_tagline', 'label' => 'Text in der Fusszeile', 'type' => 'textarea', 'default' => 'Come for the water. Return for the people and the yacht that feels like home.' ),
@@ -34,6 +34,13 @@ function woe_content_schema() {
 						array( 'id' => 'general_booking_recipients', 'label' => 'Empfaenger fuer Buchungsanfragen', 'type' => 'list', 'default' => 'info@worldofefoil.com', 'help' => 'Eine E-Mail-Adresse pro Zeile. Nur Anfragen aus dem Buchungsformular werden an alle gueltigen Adressen dieser Liste gesendet.' ),
 						array( 'id' => 'general_company', 'label' => 'Firmenname', 'type' => 'text', 'default' => 'World of eFoil GmbH' ),
 						array( 'id' => 'general_address', 'label' => 'Adresse', 'type' => 'textarea', 'default' => "Wiesenstrasse 5\n27211 Bassum, Germany" ),
+					)
+				),
+				array(
+					'title'  => 'Social Media',
+					'fields' => array(
+						array( 'id' => 'general_instagram_url', 'label' => 'Instagram-Link', 'type' => 'url', 'default' => 'https://www.instagram.com/worldofefoil/' ),
+						array( 'id' => 'general_youtube_url', 'label' => 'YouTube-Kanal', 'type' => 'url', 'default' => 'https://www.youtube.com/@worldofefoil' ),
 					)
 				),
 			)
@@ -411,6 +418,21 @@ function woe_content_schema() {
 						array( 'id' => 'gallery_video_3', 'label' => 'Video 3', 'type' => 'media', 'media_type' => 'video', 'default' => 'video/gallery-rider-reel.mp4' ),
 						array( 'id' => 'gallery_video_poster_3', 'label' => 'Vorschaubild Video 3', 'type' => 'image', 'default' => 'images/gallery-archive/archive-22.webp' ),
 						array( 'id' => 'gallery_video_caption_3', 'label' => 'Titel Video 3', 'type' => 'text', 'default' => 'Sunset session' ),
+					)
+				),
+				array(
+					'title'  => 'YouTube-Videos',
+					'fields' => array(
+						array( 'id' => 'gallery_youtube_1_url', 'label' => 'YouTube-Link 1', 'type' => 'url', 'default' => 'https://www.youtube.com/watch?v=HiYSR1Vva6g' ),
+						array( 'id' => 'gallery_youtube_1_title', 'label' => 'Titel 1', 'type' => 'text', 'default' => 'November 2025: Egypt' ),
+						array( 'id' => 'gallery_youtube_2_url', 'label' => 'YouTube-Link 2', 'type' => 'url', 'default' => 'https://www.youtube.com/watch?v=ivkeSsA8Nl0' ),
+						array( 'id' => 'gallery_youtube_2_title', 'label' => 'Titel 2', 'type' => 'text', 'default' => 'The first Wingfoil & eFoil Yacht Safari' ),
+						array( 'id' => 'gallery_youtube_3_url', 'label' => 'YouTube-Link 3', 'type' => 'url', 'default' => 'https://www.youtube.com/watch?v=evcVmouljfw' ),
+						array( 'id' => 'gallery_youtube_3_title', 'label' => 'Titel 3', 'type' => 'text', 'default' => 'Kite & eFoil Yacht Safari 2026' ),
+						array( 'id' => 'gallery_youtube_4_url', 'label' => 'YouTube-Link 4', 'type' => 'url', 'default' => 'https://www.youtube.com/watch?v=l83amnSkVpA' ),
+						array( 'id' => 'gallery_youtube_4_title', 'label' => 'Titel 4', 'type' => 'text', 'default' => 'Learn eFoiling in paradise' ),
+						array( 'id' => 'gallery_youtube_5_url', 'label' => 'YouTube-Link 5', 'type' => 'url', 'default' => 'https://www.youtube.com/watch?v=HpXKCCiNxA4' ),
+						array( 'id' => 'gallery_youtube_5_title', 'label' => 'Titel 5', 'type' => 'text', 'default' => 'Yacht tour: Wingfoil & eFoil' ),
 					)
 				),
 				array(

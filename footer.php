@@ -6,9 +6,25 @@
  */
 ?>
 <footer class="site-footer">
+	<div class="footer-social-band">
+		<div>
+			<p class="eyebrow">Stay close to the water</p>
+			<h2>Follow the next safari.</h2>
+		</div>
+		<div class="footer-social-actions">
+			<a href="<?php echo esc_url( woe_instagram_url() ); ?>" target="_blank" rel="noopener">Instagram</a>
+			<a href="<?php echo esc_url( woe_youtube_url() ); ?>" target="_blank" rel="noopener">YouTube</a>
+			<a class="is-primary" href="<?php echo esc_url( woe_whatsapp_url() ); ?>" target="_blank" rel="noopener">WhatsApp</a>
+		</div>
+	</div>
 	<div class="footer-main">
 		<div class="footer-brand">
-			<?php $footer_logo = woe_content_media_url( 'general_logo' ) ?: woe_asset_url( 'images/yacht-safaris-logo-transparent.png' ); ?>
+			<?php
+			$footer_content = get_option( 'woe_content', array() );
+			$footer_logo_id = is_array( $footer_content ) ? absint( $footer_content['general_logo'] ?? 0 ) : 0;
+			$footer_logo    = $footer_logo_id ? wp_get_attachment_url( $footer_logo_id ) : '';
+			$footer_logo    = $footer_logo ?: woe_asset_url( 'images/yacht-safaris-logo-transparent.png' );
+			?>
 			<img src="<?php echo esc_url( $footer_logo ); ?>" alt="<?php echo esc_attr( woe_content_value( 'general_brand' ) ); ?>">
 			<p><?php echo esc_html( woe_content_value( 'general_footer_tagline' ) ); ?></p>
 		</div>
