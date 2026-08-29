@@ -1,5 +1,5 @@
 EFOIL SAFARIS WORDPRESS THEME
-Version 1.3.12
+Version 1.3.13
 
 Dieses Theme ist fuer eine normale WordPress-Installation bei Strato vorbereitet.
 
@@ -21,6 +21,13 @@ ein Bild aus der WordPress-Mediathek ausgetauscht werden.
 
 Wenn du die Website angemeldet ansiehst, fuehrt der Punkt Inhalte bearbeiten in der
 oberen WordPress-Leiste direkt zum passenden Bereich dieses Editors.
+
+NEU IN VERSION 1.3.13
+- breiter und ausgewogener dargestellter Themenfahrten-Hinweis
+- Aktivitaeten-Titel mit zusammenstehendem YOUR WEEK auf Handy und Desktop
+- einheitliche Texthoehen in Prozess- und YouTube-Kacheln
+- fehlende Datenschutzseite wird auf bestehenden Installationen automatisch repariert
+- passender Seitentitel und englische Sprachkennzeichnung statt WordPress-Standardwerten
 
 NEU IN VERSION 1.3.12
 - Firmenlogo setzt sich gegen alte WordPress-Zusatzregeln durch und bleibt sichtbar

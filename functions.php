@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WOE_THEME_VERSION', '1.3.12' );
+define( 'WOE_THEME_VERSION', '1.3.13' );
 
 require_once get_template_directory() . '/inc/content-editor.php';
 
@@ -66,6 +66,19 @@ function woe_apply_content_migrations() {
 		update_option( 'woe_content', $content, false );
 	}
 
+	if ( version_compare( $installed_version, '1.3.13', '<' ) ) {
+		$current_tagline = trim( (string) get_option( 'blogdescription', '' ) );
+		$default_taglines = array(
+			'Just another WordPress site',
+			'Eine weitere WordPress-Website',
+			'Eine weitere WordPress-Seite',
+		);
+
+		if ( in_array( $current_tagline, $default_taglines, true ) ) {
+			update_option( 'blogdescription', 'Wingfoil & Kite Yacht Safaris on the Red Sea' );
+		}
+	}
+
 	if ( WOE_THEME_VERSION !== $installed_version ) {
 		update_option( 'woe_theme_data_version', WOE_THEME_VERSION, false );
 	}
@@ -88,6 +101,22 @@ function woe_theme_setup() {
 	);
 }
 add_action( 'after_setup_theme', 'woe_theme_setup' );
+
+/**
+ * Mark the English public website correctly while keeping the WordPress admin locale unchanged.
+ */
+function woe_frontend_language_attributes( $output ) {
+	if ( is_admin() ) {
+		return $output;
+	}
+
+	if ( preg_match( '/\blang=(["\']).*?\1/', $output ) ) {
+		return preg_replace( '/\blang=(["\']).*?\1/', 'lang="en"', $output, 1 );
+	}
+
+	return trim( $output . ' lang="en"' );
+}
+add_filter( 'language_attributes', 'woe_frontend_language_attributes', 20 );
 
 function woe_enqueue_assets() {
 	wp_enqueue_style( 'efoil-safaris', get_stylesheet_uri(), array(), WOE_THEME_VERSION );
@@ -386,6 +415,14 @@ function woe_create_starter_pages() {
 	foreach ( $pages as $slug => $title ) {
 		$page = get_page_by_path( $slug );
 		if ( $page ) {
+			if ( 'publish' !== $page->post_status ) {
+				wp_update_post(
+					array(
+						'ID'          => $page->ID,
+						'post_status' => 'publish',
+					)
+				);
+			}
 			$page_ids[ $slug ] = $page->ID;
 			continue;
 		}
@@ -441,6 +478,23 @@ function woe_create_starter_pages() {
 	}
 }
 add_action( 'after_switch_theme', 'woe_create_starter_pages' );
+
+/**
+ * Ensure pages added after the first theme activation also exist on older installations.
+ */
+function woe_refresh_starter_pages_after_update() {
+	if ( version_compare( (string) get_option( 'woe_starter_pages_version', '0.0.0' ), '1.3.13', '>=' ) ) {
+		return;
+	}
+
+	woe_create_starter_pages();
+
+	$privacy_page = get_page_by_path( 'privacy-policy' );
+	if ( $privacy_page && 'publish' === get_post_status( $privacy_page ) ) {
+		update_option( 'woe_starter_pages_version', '1.3.13', false );
+	}
+}
+add_action( 'init', 'woe_refresh_starter_pages_after_update', 20 );
 
 function woe_handle_booking_request() {
 	$redirect = woe_page_url( 'dates-booking' ) . '#booking';
