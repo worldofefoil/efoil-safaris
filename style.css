@@ -5,7 +5,7 @@ GitHub Theme URI: https://github.com/worldofefoil/efoil-safaris
 Primary Branch: main
 Author: World of eFoil GmbH
 Description: Mobile-first WordPress theme for Wingfoil, Kitesurf and eFoil yacht safaris in Egypt.
-Version: 1.3.13
+Version: 1.3.14
 Requires at least: 6.2
 Requires PHP: 7.4
 Text Domain: efoil-safaris
@@ -48,6 +48,7 @@ Text Domain: efoil-safaris
   --ink-soft: #12313a;
   --water: #079fba;
   --water-dark: #04778d;
+  --water-bright: #18b8d0;
   --signal: #e6f24a;
   --coral: #ff6a4d;
   --paper: #f4f4f0;
@@ -258,8 +259,8 @@ p:last-child {
 
 .header-social-link:hover,
 .header-social-link:focus-visible {
-  color: var(--ink);
-  background: var(--signal);
+  color: var(--white);
+  background: var(--water-dark);
 }
 
 .header-instagram {
@@ -274,8 +275,8 @@ p:last-child {
 
 .header-whatsapp:hover,
 .header-whatsapp:focus-visible {
-  color: var(--ink);
-  background: var(--signal);
+  color: var(--white);
+  background: var(--water-dark);
 }
 
 .brand-signal {
@@ -406,12 +407,12 @@ p:last-child {
 }
 
 .nav-home-link[aria-current="page"] {
-  color: var(--signal);
+  color: var(--water-bright);
 }
 
 .site-nav-list .current-menu-item a,
 .site-nav-list .current_page_item a {
-  color: var(--signal);
+  color: var(--water-bright);
 }
 
 .header-book {
@@ -482,7 +483,8 @@ p:last-child {
 }
 
 .hero-kicker {
-  color: var(--signal);
+  color: var(--water-bright);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
 }
 
 .hero-kicker::before,
@@ -552,8 +554,8 @@ p:last-child {
 .button:hover,
 .button:focus-visible {
   color: var(--white);
-  background: var(--coral);
-  border-color: var(--coral);
+  background: var(--water-dark);
+  border-color: var(--water-dark);
 }
 
 .hero-facts {
@@ -700,7 +702,7 @@ p:last-child {
 }
 
 .section-dark .eyebrow {
-  color: var(--signal);
+  color: var(--water-bright);
 }
 
 .section-paper {
@@ -757,7 +759,7 @@ p:last-child {
 .quote-line {
   margin: 24px 0 0;
   padding: 20px 0 0;
-  border-top: 3px solid var(--signal);
+  border-top: 3px solid var(--water);
   font-family: "Barlow Condensed Local", "Arial Narrow", Arial, sans-serif;
   font-size: 26px;
   line-height: 1.05;
@@ -808,7 +810,7 @@ p:last-child {
 }
 
 .sport-number {
-  color: var(--signal);
+  color: var(--water-bright);
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
@@ -831,8 +833,8 @@ p:last-child {
   width: fit-content;
   margin: 18px 0 0;
   padding: 8px 10px;
-  color: var(--ink);
-  background: var(--signal);
+  color: var(--white);
+  background: var(--water-dark);
   font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
@@ -840,7 +842,7 @@ p:last-child {
 
 .sport-band .text-link {
   margin-top: 18px;
-  color: var(--signal);
+  color: var(--water-bright);
 }
 
 .text-link {
@@ -893,7 +895,7 @@ p:last-child {
 }
 
 .video-copy .eyebrow {
-  color: var(--signal);
+  color: var(--water-bright);
 }
 
 .process-grid {
@@ -956,7 +958,7 @@ p:last-child {
 }
 
 .black-panther-copy .eyebrow {
-  color: var(--signal);
+  color: var(--water-bright);
 }
 
 .black-panther-copy h2 {
@@ -1021,8 +1023,8 @@ p:last-child {
   gap: 5px;
   margin-top: 24px;
   padding: 16px 18px;
-  color: var(--ink);
-  background: var(--signal);
+  color: var(--white);
+  background: var(--water-dark);
 }
 
 .private-charter-note strong {
@@ -1059,7 +1061,7 @@ p:last-child {
   width: 8px;
   height: 8px;
   content: "";
-  background: var(--signal);
+  background: var(--water-bright);
 }
 
 .spec-line-dark {
@@ -1249,7 +1251,7 @@ p:last-child {
 }
 
 .page-hero-content .eyebrow {
-  color: var(--signal);
+  color: var(--water-bright);
   text-shadow: 0 2px 16px rgba(0, 0, 0, 0.72);
 }
 
@@ -1281,8 +1283,8 @@ p:last-child {
 }
 
 .section-jump a[aria-current="page"] {
-  color: var(--ink);
-  background: var(--signal);
+  color: var(--white);
+  background: var(--water-dark);
 }
 
 .full-image {
@@ -1306,6 +1308,35 @@ p:last-child {
   align-content: start;
   padding: 14px;
   background: var(--white);
+}
+
+.equipment-signature {
+  display: grid;
+  gap: 5px;
+  margin-top: 24px;
+  padding: 12px 0 12px 16px;
+  border-left: 4px solid var(--water);
+}
+
+.equipment-signature-wide {
+  max-width: 860px;
+  margin: 0 0 30px;
+}
+
+.equipment-signature span {
+  color: var(--water-dark);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.equipment-signature strong {
+  max-width: 36ch;
+  font-family: "Barlow Condensed Local", "Arial Narrow", Arial, sans-serif;
+  font-size: 23px;
+  line-height: 1.05;
+  text-transform: uppercase;
 }
 
 .feature-stat-grid strong,
@@ -1425,6 +1456,72 @@ p:last-child {
   text-wrap: balance;
 }
 
+.activity-visual-strip {
+  display: grid;
+  grid-auto-columns: min(78vw, 320px);
+  grid-auto-flow: column;
+  gap: 6px;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.activity-visual-tile {
+  position: relative;
+  min-height: 270px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  color: var(--white);
+  background: var(--ink);
+  scroll-snap-align: start;
+}
+
+.activity-visual-tile::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(to top, rgba(3, 17, 22, 0.86), rgba(3, 17, 22, 0.04) 66%);
+}
+
+.activity-visual-tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 260ms ease;
+}
+
+.activity-visual-tile:hover img,
+.activity-visual-tile:focus-visible img {
+  transform: scale(1.025);
+}
+
+.activity-visual-tile > span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 6px;
+  padding: 22px;
+}
+
+.activity-visual-tile small {
+  color: var(--water-bright);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.activity-visual-tile strong {
+  font-family: "Barlow Condensed Local", "Arial Narrow", Arial, sans-serif;
+  font-size: 34px;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
 .battery-note {
   display: grid;
   gap: 16px;
@@ -1432,7 +1529,7 @@ p:last-child {
   padding: 18px;
   color: var(--white);
   background: var(--ink);
-  border-left: 5px solid var(--signal);
+  border-left: 5px solid var(--water);
 }
 
 .battery-note-logos {
@@ -1488,43 +1585,28 @@ p:last-child {
   padding: 5px;
 }
 
-.activity-showcase-grid {
+.activity-detail-grid {
   display: grid;
-  grid-auto-columns: min(82vw, 350px);
-  grid-auto-flow: column;
-  gap: 12px;
-  padding-bottom: 14px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
+  border-top: 1px solid var(--line);
 }
 
 .activity-card {
   min-width: 0;
-  overflow: hidden;
   background: var(--white);
-  border: 1px solid var(--line);
-  border-top: 4px solid var(--line);
-  border-radius: 2px;
-  scroll-snap-align: start;
+  border-top: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.activity-detail-grid .activity-card:nth-child(3) {
+  border-top-color: var(--line);
 }
 
 .activity-card.is-featured {
-  border-top-color: var(--water);
-}
-
-.activity-card:nth-child(3) {
-  border-top-color: var(--coral);
-}
-
-.activity-card img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  border-left: 4px solid var(--water);
 }
 
 .activity-card-copy {
-  padding: 18px;
+  padding: 20px 18px;
 }
 
 .activity-card-copy span {
@@ -1563,7 +1645,7 @@ p:last-child {
 }
 
 .why-heading .eyebrow {
-  color: var(--signal);
+  color: var(--water-bright);
 }
 
 .why-heading > p:not(.eyebrow),
@@ -1582,7 +1664,7 @@ p:last-child {
 }
 
 .why-grid article > span {
-  color: var(--signal);
+  color: var(--water-bright);
   font-size: 12px;
   font-weight: 800;
 }
@@ -1779,7 +1861,7 @@ a.partner-item:hover {
   position: absolute;
   top: 12px;
   left: 0;
-  color: var(--signal);
+  color: var(--water-bright);
   content: "+";
   font-weight: 800;
 }
@@ -1854,7 +1936,7 @@ a.partner-item:hover {
   max-width: 560px;
   margin: 26px 0 0;
   padding: 10px 0 10px 18px;
-  border-left: 5px solid var(--signal);
+  border-left: 5px solid var(--water);
   font-family: "Barlow Condensed Local", "Arial Narrow", Arial, sans-serif;
   font-size: 28px;
   font-weight: 800;
@@ -1923,11 +2005,11 @@ a.partner-item:hover {
   padding: 28px 22px;
   color: var(--white);
   background: var(--ink);
-  border-top: 6px solid var(--signal);
+  border-top: 6px solid var(--water-bright);
 }
 
 .theme-interest-cta .eyebrow {
-  color: var(--signal);
+  color: var(--water-bright);
 }
 
 .theme-interest-cta h3 {
@@ -1960,7 +2042,7 @@ a.partner-item:hover {
 }
 
 .theme-interest-prompts li::marker {
-  color: var(--signal);
+  color: var(--water-bright);
 }
 
 .theme-interest-action {
@@ -1999,7 +2081,7 @@ a.partner-item:hover {
   align-items: center;
   padding: 11px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--signal);
+  color: var(--water-bright);
   font-weight: 700;
 }
 
@@ -2068,7 +2150,7 @@ a.partner-item:hover {
 
 .form-status {
   padding: 13px 14px;
-  border: 2px solid var(--signal);
+  border: 2px solid var(--water);
   font-weight: 700;
 }
 
@@ -2164,7 +2246,7 @@ a.partner-item:hover {
 }
 
 .footer-social-band .eyebrow {
-  color: var(--signal);
+  color: var(--water-bright);
 }
 
 .footer-social-band h2 {
@@ -2195,9 +2277,9 @@ a.partner-item:hover {
 .footer-social-actions a:hover,
 .footer-social-actions a:focus-visible,
 .footer-social-actions .is-primary {
-  color: var(--ink);
-  background: var(--signal);
-  border-color: var(--signal);
+  color: var(--white);
+  background: var(--water-dark);
+  border-color: var(--water-dark);
 }
 
 .footer-main {
@@ -2221,7 +2303,7 @@ a.partner-item:hover {
 }
 
 .footer-main a:hover {
-  color: var(--signal);
+  color: var(--water-bright);
 }
 
 .footer-main p {
@@ -2485,11 +2567,28 @@ a.partner-item:hover {
     aspect-ratio: 16 / 8;
   }
 
-  .activity-showcase-grid {
+  .activity-visual-strip {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-columns: auto;
     grid-auto-flow: row;
+    gap: 4px;
+    padding-bottom: 0;
     overflow: visible;
+  }
+
+  .activity-visual-tile {
+    min-height: 220px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .activity-detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    border-top: 0;
+  }
+
+  .activity-card {
+    border: 1px solid var(--line);
   }
 
   .battery-note {
@@ -2968,9 +3067,44 @@ a.partner-item:hover {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .activity-showcase-grid,
+  .activity-detail-grid,
   .why-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .activity-showcase .section-head {
+    margin-bottom: 36px;
+  }
+
+  .activity-visual-strip {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-bottom: 38px;
+  }
+
+  .activity-detail-grid {
+    gap: 18px;
+  }
+
+  .activity-card-copy {
+    padding: 25px 24px 27px;
+  }
+
+  .activity-card-copy h3 {
+    min-height: 56px;
+  }
+
+  .duotone-standard-inner {
+    padding-top: 60px;
+    padding-bottom: 64px;
+  }
+
+  .why-grid article,
+  .process-grid article {
+    padding: 30px;
+  }
+
+  .included-grid > div {
+    padding: 40px;
   }
 
   .why-grid article:nth-child(odd) {
@@ -3049,3 +3183,4 @@ a.partner-item:hover {
     transition-duration: 0.01ms !important;
   }
 }
+
