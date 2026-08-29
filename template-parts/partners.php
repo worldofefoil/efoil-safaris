@@ -18,9 +18,10 @@
 				$name   = woe_content_value( 'partner_' . $number . '_name' );
 				$url    = woe_content_value( 'partner_' . $number . '_url' );
 				$tag    = $url ? 'a' : 'div';
+				$logo   = 'lift-foils' === $partner[0] ? woe_asset_url( 'images/partners/lift-foils-compact.webp' ) : woe_content_media_url( 'partner_' . $number . '_logo' );
 				?>
 				<<?php echo esc_html( $tag ); ?> class="partner-item"<?php if ( $url ) : ?> href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener"<?php endif; ?>>
-					<img src="<?php echo esc_url( woe_content_media_url( 'partner_' . $number . '_logo' ) ); ?>" alt="<?php echo esc_attr( $name ); ?>" loading="lazy">
+					<img src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( $name ); ?>" loading="lazy">
 					<span class="screen-reader-text"><?php echo esc_html( $name ); ?></span>
 				</<?php echo esc_html( $tag ); ?>>
 			<?php endforeach; ?>

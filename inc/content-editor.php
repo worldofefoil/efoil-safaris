@@ -594,7 +594,8 @@ function woe_partner_fields() {
 	$fields = array();
 	foreach ( woe_partner_defaults() as $offset => $partner ) {
 		$number   = $offset + 1;
-		$fields[] = array( 'id' => 'partner_' . $number . '_logo', 'label' => 'Partner ' . $number . ' Logo', 'type' => 'image', 'default' => 'images/partners/' . $partner[0] . '.webp' );
+		$logo     = 'lift-foils' === $partner[0] ? 'lift-foils-compact' : $partner[0];
+		$fields[] = array( 'id' => 'partner_' . $number . '_logo', 'label' => 'Partner ' . $number . ' Logo', 'type' => 'image', 'default' => 'images/partners/' . $logo . '.webp' );
 		$fields[] = array( 'id' => 'partner_' . $number . '_name', 'label' => 'Partner ' . $number . ' Name', 'type' => 'text', 'default' => $partner[1] );
 		$fields[] = array( 'id' => 'partner_' . $number . '_url', 'label' => 'Partner ' . $number . ' Link', 'type' => 'url', 'default' => $partner[2] );
 	}
