@@ -60,7 +60,7 @@ get_header();
 				<ul class="spec-line">
 					<li>5 decks</li><li>15 rooms</li><li>Chef on board</li><li>Spa & jacuzzi</li><li>2 rescue tenders</li>
 				</ul>
-				<a class="button button-primary" href="<?php echo esc_url( woe_page_url( 'yachts-cabins' ) ); ?>">Explore Black Panther</a>
+				<a class="button button-water" href="<?php echo esc_url( woe_page_url( 'yachts-cabins' ) ); ?>">Explore Black Panther</a>
 			</div>
 		</div>
 	</section>
@@ -253,3 +253,4 @@ get_header();
 </main>
 <?php
 get_footer();
+
