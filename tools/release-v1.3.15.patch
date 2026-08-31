@@ -1,0 +1,580 @@
+diff --git a/footer.php b/footer.php
+index 02af25a..2123154 100644
+--- a/footer.php
++++ b/footer.php
+@@ -45,6 +45,7 @@
+ 		<div>
+ 			<h2>Company</h2>
+ 			<p><?php echo esc_html( woe_content_value( 'general_company' ) ); ?><br><?php echo nl2br( esc_html( woe_content_value( 'general_address' ) ) ); ?></p>
++			<a href="<?php echo esc_url( woe_page_url( 'imprint' ) ); ?>">Imprint</a>
+ 			<a href="<?php echo esc_url( woe_page_url( 'privacy-policy' ) ); ?>">Privacy Policy</a>
+ 			<a href="<?php echo esc_url( woe_page_url( 'terms-conditions' ) ); ?>">Terms & Conditions</a>
+ 		</div>
+diff --git a/front-page.php b/front-page.php
+index abf0d5e..5df1ba1 100644
+--- a/front-page.php
++++ b/front-page.php
+@@ -15,6 +15,11 @@ get_header();
+ 			<p class="hero-kicker"><?php echo esc_html( woe_content_value( 'home_hero_kicker' ) ); ?></p>
+ 			<h1><?php echo esc_html( woe_content_value( 'home_hero_title' ) ); ?></h1>
+ 			<p class="hero-lead"><?php echo esc_html( woe_content_value( 'home_hero_lead' ) ); ?></p>
++			<div class="hero-booking-signal" aria-label="Next available safari">
++				<span>Next possible week</span>
++				<strong><?php echo esc_html( woe_content_value( 'dates_maj_date1' ) ); ?></strong>
++				<small><?php echo esc_html( woe_content_value( 'dates_maj_price' ) ); ?> per person. Cabin choice confirmed personally.</small>
++			</div>
+ 			<div class="button-row">
+ 				<a class="button button-primary" href="<?php echo esc_url( woe_page_url( 'dates-booking' ) ); ?>">See dates & prices</a>
+ 				<a class="button button-outline" href="<?php echo esc_url( woe_whatsapp_url() ); ?>" target="_blank" rel="noopener">Ask on WhatsApp</a>
+@@ -192,6 +197,20 @@ get_header();
+ 		</div>
+ 	</section>
+ 
++	<section class="section section-trust">
++		<div class="section-head">
++			<p class="eyebrow">Booking confidence</p>
++			<h2>Ask first. Decide with clear details.</h2>
++			<p>Before a cabin is confirmed, the team checks availability, room options, sport setup, extra fees and the payment schedule personally.</p>
++		</div>
++		<div class="trust-grid">
++			<article><span>01</span><h3>German GmbH</h3><p><?php echo esc_html( woe_content_value( 'general_company' ) ); ?> is shown with full contact details and imprint information.</p></article>
++			<article><span>02</span><h3>Personal reply</h3><p>No anonymous checkout. You speak to the safari team before booking and payment.</p></article>
++			<article><span>03</span><h3>Safety support</h3><p>The yachts use tenders for transfers, riding support and rescue during water sessions.</p></article>
++			<article><span>04</span><h3>Clear extras</h3><p>Lessons, rental, local fees, tips and insurance are separated before you commit.</p></article>
++		</div>
++	</section>
++
+ 	<section class="section section-paper">
+ 		<div class="section-inner">
+ 			<div class="section-head">
+diff --git a/functions.php b/functions.php
+index d0c3f48..a8eb971 100644
+--- a/functions.php
++++ b/functions.php
+@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
+ 	exit;
+ }
+ 
+-define( 'WOE_THEME_VERSION', '1.3.14' );
++define( 'WOE_THEME_VERSION', '1.3.15' );
+ 
+ require_once get_template_directory() . '/inc/content-editor.php';
+ 
+@@ -79,6 +79,18 @@ function woe_apply_content_migrations() {
+ 		}
+ 	}
+ 
++	if ( version_compare( $installed_version, '1.3.15', '<' ) ) {
++		$privacy_page = get_page_by_path( 'privacy-policy' );
++		if ( $privacy_page && woe_is_placeholder_legal_content( $privacy_page->post_content ) ) {
++			wp_update_post(
++				array(
++					'ID'           => $privacy_page->ID,
++					'post_content' => '',
++				)
++			);
++		}
++	}
++
+ 	if ( WOE_THEME_VERSION !== $installed_version ) {
+ 		update_option( 'woe_theme_data_version', WOE_THEME_VERSION, false );
+ 	}
+@@ -166,7 +178,7 @@ function woe_output_meta_tags() {
+ 		printf( '<meta name="twitter:card" content="summary_large_image">' . "\n" );
+ 	}
+ 
+-	if ( is_page( array( 'privacy-policy', 'terms-conditions' ) ) ) {
++	if ( is_page( array( 'privacy-policy', 'terms-conditions', 'imprint' ) ) ) {
+ 		echo '<meta name="robots" content="noindex,follow">' . "\n";
+ 	}
+ 
+@@ -190,6 +202,38 @@ function woe_output_meta_tags() {
+ 		);
+ 		printf( '<script type="application/ld+json">%s</script>' . "\n", wp_json_encode( $schema, JSON_UNESCAPED_SLASHES ) );
+ 	}
++
++	if ( is_page( 'faq-contact' ) ) {
++		$faq_items = array();
++		for ( $number = 1; $number <= 12; $number++ ) {
++			$question = trim( (string) woe_content_value( 'faq_question_' . $number ) );
++			$answer   = trim( (string) woe_content_value( 'faq_answer_' . $number ) );
++			if ( $question && $answer ) {
++				$faq_items[] = array(
++					'@type'          => 'Question',
++					'name'           => $question,
++					'acceptedAnswer' => array(
++						'@type' => 'Answer',
++						'text'  => $answer,
++					),
++				);
++			}
++		}
++
++		if ( $faq_items ) {
++			printf(
++				'<script type="application/ld+json">%s</script>' . "\n",
++				wp_json_encode(
++					array(
++						'@context'   => 'https://schema.org',
++						'@type'      => 'FAQPage',
++						'mainEntity' => $faq_items,
++					),
++					JSON_UNESCAPED_SLASHES
++				)
++			);
++		}
++	}
+ }
+ add_action( 'wp_head', 'woe_output_meta_tags', 2 );
+ 
+@@ -406,6 +450,7 @@ function woe_create_starter_pages() {
+ 		'dates-booking'  => 'Dates & Booking',
+ 		'gallery'        => 'Gallery',
+ 		'faq-contact'    => 'FAQ & Contact',
++		'imprint'        => 'Imprint',
+ 		'privacy-policy' => 'Privacy Policy',
+ 		'terms-conditions' => 'Terms & Conditions',
+ 	);
+@@ -483,15 +528,16 @@ add_action( 'after_switch_theme', 'woe_create_starter_pages' );
+  * Ensure pages added after the first theme activation also exist on older installations.
+  */
+ function woe_refresh_starter_pages_after_update() {
+-	if ( version_compare( (string) get_option( 'woe_starter_pages_version', '0.0.0' ), '1.3.13', '>=' ) ) {
++	if ( version_compare( (string) get_option( 'woe_starter_pages_version', '0.0.0' ), '1.3.15', '>=' ) ) {
+ 		return;
+ 	}
+ 
+ 	woe_create_starter_pages();
+ 
+ 	$privacy_page = get_page_by_path( 'privacy-policy' );
+-	if ( $privacy_page && 'publish' === get_post_status( $privacy_page ) ) {
+-		update_option( 'woe_starter_pages_version', '1.3.13', false );
++	$imprint_page = get_page_by_path( 'imprint' );
++	if ( $privacy_page && $imprint_page && 'publish' === get_post_status( $privacy_page ) && 'publish' === get_post_status( $imprint_page ) ) {
++		update_option( 'woe_starter_pages_version', '1.3.15', false );
+ 	}
+ }
+ add_action( 'init', 'woe_refresh_starter_pages_after_update', 20 );
+@@ -560,4 +606,7 @@ function woe_render_legal_source( $filename ) {
+ 
+ 	echo '<p>The legal text is currently unavailable. Please contact ' . esc_html( woe_email() ) . '.</p>';
+ }
+-
++function woe_is_placeholder_legal_content( $content ) {
++	$content = strtolower( wp_strip_all_tags( (string) $content ) );
++	return false !== strpos( $content, 'suggested text:' ) || false !== strpos( $content, 'our website address is:' );
++}
+diff --git a/inc/content-editor.php b/inc/content-editor.php
+index 7851f04..7fbc62c 100644
+--- a/inc/content-editor.php
++++ b/inc/content-editor.php
+@@ -33,6 +33,7 @@ function woe_content_schema() {
+ 						array( 'id' => 'general_email', 'label' => 'Sichtbare Kontakt-E-Mail', 'type' => 'email', 'default' => 'info@worldofefoil.com' ),
+ 						array( 'id' => 'general_booking_recipients', 'label' => 'Empfaenger fuer Buchungsanfragen', 'type' => 'list', 'default' => 'info@worldofefoil.com', 'help' => 'Eine E-Mail-Adresse pro Zeile. Nur Anfragen aus dem Buchungsformular werden an alle gueltigen Adressen dieser Liste gesendet.' ),
+ 						array( 'id' => 'general_company', 'label' => 'Firmenname', 'type' => 'text', 'default' => 'World of eFoil GmbH' ),
++						array( 'id' => 'general_representative', 'label' => 'Vertreten durch', 'type' => 'text', 'default' => 'Marvin Sebbes' ),
+ 						array( 'id' => 'general_address', 'label' => 'Adresse', 'type' => 'textarea', 'default' => "Wiesenstrasse 5\n27211 Bassum, Germany" ),
+ 					)
+ 				),
+diff --git a/legal/privacy-policy-source.html b/legal/privacy-policy-source.html
+index 5db78a2..84aea54 100644
+--- a/legal/privacy-policy-source.html
++++ b/legal/privacy-policy-source.html
+@@ -1,47 +1,39 @@
+ <!doctype html>
+ <html lang="en">
+   <head>
+-    <meta charset="utf-8" />
+-    <meta name="viewport" content="width=device-width, initial-scale=1" />
++    <meta charset="utf-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>Privacy Policy | World of eFoil</title>
+-    <meta name="robots" content="noindex,follow" />
+-    <link rel="stylesheet" href="styles.css" />
++    <meta name="robots" content="noindex,follow">
+   </head>
+   <body>
+     <main class="legal-main">
+-      <a class="back-link" href="index.html">Back to safari page</a>
+       <h1>Privacy Policy</h1>
+       <div class="legal-content">
+-        <h3>Who we are</h3>
+-        <h3>Our website address is: https://worldofefoil.de</h3>
+-        <h3>and https://www.efoilsafaris.com/</h3>
+-        <h3>Comments</h3>
+-        <p>When visitors leave comments on the site we collect the data shown in the comments form, and also the visitor’s IP address and browser user agent string to help spam detection.</p>
+-        <p>An anonymised string created from your email address (also called a hash) may be provided to the Gravatar service to see if you are using it. The Gravatar service Privacy Policy is available here: https://automattic.com/privacy/. After approval of your comment, your profile picture is visible to the public in the context of your comment.</p>
+-        <h3>Media</h3>
+-        <p>If you upload images to the website, you should avoid uploading images with embedded location data (EXIF GPS) included. Visitors to the website can download and extract any location data from images on the website.</p>
+-        <h3>Cookies</h3>
+-        <p>If you leave a comment on our site you may opt in to saving your name, email address and website in cookies. These are for your convenience so that you do not have to fill in your details again when you leave another comment. These cookies will last for one year.</p>
+-        <p>If you visit our login page, we will set a temporary cookie to determine if your browser accepts cookies. This cookie contains no personal data and is discarded when you close your browser.</p>
+-        <p>When you log in, we will also set up several cookies to save your login information and your screen display choices. Login cookies last for two days, and screen options cookies last for a year. If you select “Remember Me”, your login will persist for two weeks. If you log out of your account, the login cookies will be removed.</p>
+-        <p>If you edit or publish an article, an additional cookie will be saved in your browser. This cookie includes no personal data and simply indicates the post ID of the article you just edited. It expires after 1 day.</p>
+-        <h3>Embedded content from other websites</h3>
+-        <p>Articles on this site may include embedded content (e.g. videos, images, articles, etc.). Embedded content from other websites behaves in the exact same way as if the visitor has visited that website.</p>
+-        <p>These websites may collect data about you, use cookies, embed additional third-party tracking, and monitor your interaction with that embedded content, including tracking your interaction with the embedded content if you have an account and are logged in to that website.</p>
+-        <h3>Who we share your data with</h3>
+-        <p>If you request a password reset, your IP address will be included in the reset email.</p>
+-        <h3>How long we retain your data</h3>
+-        <p>If you leave a comment, the comment and its metadata are retained indefinitely. This is so we can recognise and approve any follow-up comments automatically instead of holding them in a moderation queue.</p>
+-        <p>For users that register on our website (if any), we also store the personal information they provide in their user profile. All users can see, edit, or delete their personal information at any time (except they cannot change their username). Website administrators can also see and edit that information.</p>
+-        <h3>What rights you have over your data</h3>
+-        <p>If you have an account on this site, or have left comments, you can request to receive an exported file of the personal data we hold about you, including any data you have provided to us. You can also request that we erase any personal data we hold about you. This does not include any data we are obliged to keep for administrative, legal, or security purposes.</p>
+-        <h3>Third Party Websites and Links</h3>
+-        <p>Our Site may provide links to websites or other online platforms operated by third parties. If you follow links to sites not affiliated or controlled by us, you should review their privacy and security policies and other terms and conditions. We do not guarantee and are not responsible for the privacy or security of such sites, including the accuracy, completeness, or reliability of information found on these sites. Information you provide on public or semi-public venues, including information you share on third-party social networking platforms may also be viewable by other users of the Services and/or users of those third-party platforms without limitation as to its use by us or by a third party. Our inclusion of such links does not, by itself, imply any endorsement of the content on such platforms or of their owners or operators, except as disclosed on the Services.</p>
+-        <h3>Where your data is sent</h3>
+-        <p>Visitor comments may be checked through an automated spam detection service.</p>
+-        <h3>Contact</h3>
+-        <p>Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, please call +491605086800 or email us at info@worldofefoil.com or contact us at WorldOfEfoil, Wiesenstrasse 5, 27211 Bassum</p>
+-        <p>For the purpose of applicable data protection laws, we are the data controller of your personal information. Our representative in de European Union is Marvin Sebbes. To be contacted under the following eMail address: info@worldofefoil.com</p>
++        <h2>Controller</h2>
++        <p>World of eFoil GmbH, Wiesenstrasse 5, 27211 Bassum, Germany, is responsible for this website. You can contact us by phone at +49 (0)160 5086 800 or by email at info@worldofefoil.com.</p>
++
++        <h2>Booking and contact requests</h2>
++        <p>When you send a booking or contact request, we process the details you provide, such as your name, contact details, preferred date, group size, sport interest and message. We use this information to answer your request, check availability and prepare relevant booking information.</p>
++        <p>Please do not submit sensitive medical information through the free-text message field. If special requirements are relevant for your trip, we will coordinate them personally before booking.</p>
++
++        <h2>Communication channels</h2>
++        <p>The website links to email, phone, WhatsApp, Instagram and YouTube. If you contact us through an external service, the privacy rules of that service also apply. We only use your message to respond to your inquiry and coordinate the requested information.</p>
++
++        <h2>Website hosting and technical data</h2>
++        <p>When you visit the website, the hosting provider may process technical access data such as IP address, browser information, requested pages, date and time of access and server log information. This is required to deliver the website securely and reliably.</p>
++
++        <h2>Cookies and embedded services</h2>
++        <p>The theme itself uses locally hosted images, fonts and videos and does not require analytics cookies. If analytics, maps, newsletter tools, third-party video embeds or advertising pixels are added later, this policy and the consent setup should be updated before launch.</p>
++
++        <h2>Retention</h2>
++        <p>Inquiry data is kept for as long as needed to answer the request, prepare a possible booking and meet business or legal retention duties. If no booking follows, unnecessary inquiry data should be deleted when it is no longer needed.</p>
++
++        <h2>Your rights</h2>
++        <p>Depending on applicable law, you may request access, correction, deletion, restriction of processing or portability of your personal data. You may also object to certain processing. To exercise these rights, contact us at info@worldofefoil.com.</p>
++
++        <h2>Updates</h2>
++        <p>This privacy policy may be updated when website functions, booking processes or third-party services change.</p>
+       </div>
+     </main>
+   </body>
+diff --git a/page-imprint.php b/page-imprint.php
+new file mode 100644
+index 0000000..8d04556
+--- /dev/null
++++ b/page-imprint.php
+@@ -0,0 +1,30 @@
++<?php
++/**
++ * Imprint page.
++ *
++ * @package Efoil_Safaris
++ */
++
++get_header();
++?>
++<main id="main-content" class="legal-page">
++	<p class="eyebrow">Legal</p>
++	<h1>Imprint</h1>
++	<div class="legal-content">
++		<h2>Company information</h2>
++		<p><strong><?php echo esc_html( woe_content_value( 'general_company' ) ); ?></strong><br><?php echo nl2br( esc_html( woe_content_value( 'general_address' ) ) ); ?></p>
++
++		<h2>Represented by</h2>
++		<p><?php echo esc_html( woe_content_value( 'general_representative' ) ); ?></p>
++
++		<h2>Contact</h2>
++		<p>Phone: <a href="tel:<?php echo esc_attr( woe_phone_link() ); ?>"><?php echo esc_html( woe_phone_display() ); ?></a><br>Email: <a href="mailto:<?php echo esc_attr( woe_email() ); ?>"><?php echo esc_html( woe_email() ); ?></a></p>
++
++		<h2>Responsible for website content</h2>
++		<p><?php echo esc_html( woe_content_value( 'general_representative' ) ); ?><br><?php echo nl2br( esc_html( woe_content_value( 'general_address' ) ) ); ?></p>
++
++		<h2>Important note</h2>
++		<p>The information on this website is provided for general travel and watersports information. Final availability, prices, local fees, safety requirements and booking details are confirmed personally before a cabin is booked.</p>
++	</div>
++</main>
++<?php get_footer(); ?>
+diff --git a/page-privacy-policy.php b/page-privacy-policy.php
+index 076ab36..9c1eb6f 100644
+--- a/page-privacy-policy.php
++++ b/page-privacy-policy.php
+@@ -10,6 +10,9 @@ $custom_content = '';
+ if ( have_posts() ) {
+ 	the_post();
+ 	$custom_content = trim( get_the_content() );
++	if ( woe_is_placeholder_legal_content( $custom_content ) ) {
++		$custom_content = '';
++	}
+ }
+ ?>
+ <main id="main-content" class="legal-page">
+diff --git a/page-terms-conditions.php b/page-terms-conditions.php
+index a67e98b..b82c8e2 100644
+--- a/page-terms-conditions.php
++++ b/page-terms-conditions.php
+@@ -10,6 +10,9 @@ $custom_content = '';
+ if ( have_posts() ) {
+ 	the_post();
+ 	$custom_content = trim( get_the_content() );
++	if ( woe_is_placeholder_legal_content( $custom_content ) ) {
++		$custom_content = '';
++	}
+ }
+ ?>
+ <main id="main-content" class="legal-page">
+diff --git a/readme.txt b/readme.txt
+index daa8097..e9d5091 100644
+--- a/readme.txt
++++ b/readme.txt
+@@ -1,5 +1,5 @@
+ EFOIL SAFARIS WORDPRESS THEME
+-Version 1.3.14
++Version 1.3.15
+ 
+ Dieses Theme ist fuer eine normale WordPress-Installation bei Strato vorbereitet.
+ 
+@@ -22,6 +22,16 @@ ein Bild aus der WordPress-Mediathek ausgetauscht werden.
+ Wenn du die Website angemeldet ansiehst, fuehrt der Punkt Inhalte bearbeiten in der
+ oberen WordPress-Leiste direkt zum passenden Bereich dieses Editors.
+ 
++NEU IN VERSION 1.3.15
++- Preis und naechster moeglicher Termin direkt im Startbild sichtbar
++- neuer Vertrauensbereich vor den Terminen mit GmbH-, Kontakt-, Sicherheits- und Kostenhinweisen
++- neue Imprint-Seite wird automatisch angelegt und in der Fusszeile verlinkt
++- gespeicherter WordPress-Standardtext in der Datenschutzseite wird beim Update bereinigt
++- schlankere Datenschutzquelle ohne Kommentar- und Gravatar-Platzhalter
++- FAQ-Strukturdaten fuer bessere Suchmaschinenverstaendlichkeit
++- schwere Inter-Schriftdateien werden nicht mehr fuer die Website geladen
++- mehr Abstand im mobilen Buchungsbereich hinter der festen Aktionsleiste
++
+ NEU IN VERSION 1.3.14
+ - Duotone-nahe Farbrollen mit Tuerkis fuer Orientierung und Gelb fuer Buchungsaktionen
+ - kompakter Fotostreifen fuer die wichtigsten Wassersportaktivitaeten
+@@ -121,6 +131,7 @@ SEITEN
+ - Dates & Booking
+ - Gallery
+ - FAQ & Contact
++- Imprint
+ - Privacy Policy
+ - Terms & Conditions
+ 
+diff --git a/style.css b/style.css
+index 0f000b4..41aea02 100644
+--- a/style.css
++++ b/style.css
+@@ -5,7 +5,7 @@ GitHub Theme URI: https://github.com/worldofefoil/efoil-safaris
+ Primary Branch: main
+ Author: World of eFoil GmbH
+ Description: Mobile-first WordPress theme for Wingfoil, Kitesurf and eFoil yacht safaris in Egypt.
+-Version: 1.3.14
++Version: 1.3.15
+ Requires at least: 6.2
+ Requires PHP: 7.4
+ Text Domain: efoil-safaris
+@@ -19,30 +19,6 @@ Text Domain: efoil-safaris
+   font-display: swap;
+ }
+ 
+-@font-face {
+-  font-family: "Inter Local";
+-  src: url("assets/fonts/inter-400.ttf") format("truetype");
+-  font-weight: 400;
+-  font-style: normal;
+-  font-display: swap;
+-}
+-
+-@font-face {
+-  font-family: "Inter Local";
+-  src: url("assets/fonts/inter-600.ttf") format("truetype");
+-  font-weight: 600;
+-  font-style: normal;
+-  font-display: swap;
+-}
+-
+-@font-face {
+-  font-family: "Inter Local";
+-  src: url("assets/fonts/inter-700.ttf") format("truetype");
+-  font-weight: 700;
+-  font-style: normal;
+-  font-display: swap;
+-}
+-
+ :root {
+   --ink: #071d25;
+   --ink-soft: #12313a;
+@@ -73,7 +49,7 @@ body {
+   margin: 0;
+   color: var(--ink);
+   background: var(--white);
+-  font-family: "Inter Local", Arial, sans-serif;
++  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+   font-size: 16px;
+   line-height: 1.6;
+   letter-spacing: 0;
+@@ -504,6 +480,40 @@ p:last-child {
+   font-weight: 500;
+ }
+ 
++.hero-booking-signal {
++  width: min(100%, 500px);
++  display: grid;
++  gap: 4px;
++  margin: 0 0 18px;
++  padding: 13px 15px;
++  color: var(--white);
++  background: rgba(3, 17, 22, 0.66);
++  border-left: 4px solid var(--signal);
++}
++
++.hero-booking-signal span,
++.hero-booking-signal small {
++  font-size: 11px;
++  font-weight: 800;
++  line-height: 1.35;
++  text-transform: uppercase;
++}
++
++.hero-booking-signal span {
++  color: var(--water-bright);
++}
++
++.hero-booking-signal strong {
++  font-family: "Barlow Condensed Local", "Arial Narrow", Arial, sans-serif;
++  font-size: 24px;
++  line-height: 1;
++  text-transform: uppercase;
++}
++
++.hero-booking-signal small {
++  color: rgba(255, 255, 255, 0.78);
++}
++
+ .button-row {
+   display: flex;
+   flex-wrap: wrap;
+@@ -1679,6 +1689,40 @@ p:last-child {
+   font-size: 14px;
+ }
+ 
++.section-trust {
++  background: var(--white);
++}
++
++.trust-grid {
++  display: grid;
++  gap: 12px;
++}
++
++.trust-grid article {
++  min-width: 0;
++  padding: 22px;
++  background: var(--paper);
++  border: 1px solid var(--line);
++}
++
++.trust-grid span {
++  color: var(--water-dark);
++  font-size: 12px;
++  font-weight: 800;
++  text-transform: uppercase;
++}
++
++.trust-grid h3 {
++  margin: 8px 0 10px;
++  font-size: 29px;
++}
++
++.trust-grid p {
++  margin: 0;
++  color: var(--muted);
++  font-size: 14px;
++}
++
+ .partner-section {
+   background: #eef1f0;
+   border-top: 1px solid var(--line);
+@@ -2230,6 +2274,12 @@ a.partner-item:hover {
+   color: var(--muted);
+ }
+ 
++.legal-content a {
++  color: var(--water-dark);
++  text-decoration: underline;
++  text-underline-offset: 3px;
++}
++
+ .site-footer {
+   padding-bottom: 76px;
+   color: rgba(255, 255, 255, 0.72);
+@@ -2479,6 +2529,10 @@ a.partner-item:hover {
+     padding-bottom: 96px;
+   }
+ 
++  #booking .section-inner {
++    padding-bottom: 92px;
++  }
++
+   .private-charter-content {
+     padding-bottom: 120px;
+   }
+@@ -2532,6 +2586,16 @@ a.partner-item:hover {
+     font-size: 19px;
+   }
+ 
++  .hero-booking-signal {
++    grid-template-columns: minmax(0, 1fr) auto;
++    align-items: center;
++  }
++
++  .hero-booking-signal span,
++  .hero-booking-signal small {
++    grid-column: 1 / -1;
++  }
++
+   .hero-facts div {
+     padding-right: 20px;
+   }
+@@ -2615,6 +2679,10 @@ a.partner-item:hover {
+     grid-template-columns: repeat(2, minmax(0, 1fr));
+   }
+ 
++  .trust-grid {
++    grid-template-columns: repeat(2, minmax(0, 1fr));
++  }
++
+   .why-grid article {
+     padding: 24px;
+   }
+@@ -2902,7 +2970,7 @@ a.partner-item:hover {
+     min-height: 44px;
+     padding: 8px 9px;
+     border: 0;
+-    font-family: "Inter Local", Arial, sans-serif;
++    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+     font-size: 11px;
+     font-weight: 700;
+   }
+@@ -3068,10 +3136,15 @@ a.partner-item:hover {
+   }
+ 
+   .activity-detail-grid,
+-  .why-grid {
++  .why-grid,
++  .trust-grid {
+     grid-template-columns: repeat(3, minmax(0, 1fr));
+   }
+ 
++  .trust-grid {
++    grid-template-columns: repeat(4, minmax(0, 1fr));
++  }
++
+   .activity-showcase .section-head {
+     margin-bottom: 36px;
+   }
+@@ -3099,7 +3172,8 @@ a.partner-item:hover {
+   }
+ 
+   .why-grid article,
+-  .process-grid article {
++  .process-grid article,
++  .trust-grid article {
+     padding: 30px;
+   }
+ 
